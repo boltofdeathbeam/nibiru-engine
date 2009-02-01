@@ -1,0 +1,64 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual C# Express 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NibiruEngine", "NibiruEngine\NibiruEngine.csproj", "{6EC43D70-A75C-4E05-B4ED-3A0B37C18F1D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NibiruDemo", "NibiruDemo\NibiruDemo.csproj", "{EBF8200B-5011-4C16-9E03-9476886FCED4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NibiruPipeline", "NibiruPipeline\NibiruPipeline.csproj", "{1F8F0637-C93E-4598-A909-0B57F2AE9B12}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Debug|Xbox 360 = Debug|Xbox 360
+		Debug|Zune = Debug|Zune
+		Release|x86 = Release|x86
+		Release|Xbox 360 = Release|Xbox 360
+		Release|Zune = Release|Zune
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6EC43D70-A75C-4E05-B4ED-3A0B37C18F1D}.Debug|x86.ActiveCfg = Debug|x86
+		{6EC43D70-A75C-4E05-B4ED-3A0B37C18F1D}.Debug|x86.Build.0 = Debug|x86
+		{6EC43D70-A75C-4E05-B4ED-3A0B37C18F1D}.Debug|Xbox 360.ActiveCfg = Debug|x86
+		{6EC43D70-A75C-4E05-B4ED-3A0B37C18F1D}.Debug|Zune.ActiveCfg = Debug|x86
+		{6EC43D70-A75C-4E05-B4ED-3A0B37C18F1D}.Release|x86.ActiveCfg = Release|x86
+		{6EC43D70-A75C-4E05-B4ED-3A0B37C18F1D}.Release|x86.Build.0 = Release|x86
+		{6EC43D70-A75C-4E05-B4ED-3A0B37C18F1D}.Release|Xbox 360.ActiveCfg = Release|x86
+		{6EC43D70-A75C-4E05-B4ED-3A0B37C18F1D}.Release|Zune.ActiveCfg = Release|x86
+		{D985858F-21F2-4B13-BE58-B085859C9687}.Debug|x86.ActiveCfg = Debug|x86
+		{D985858F-21F2-4B13-BE58-B085859C9687}.Debug|Xbox 360.ActiveCfg = Debug|x86
+		{D985858F-21F2-4B13-BE58-B085859C9687}.Debug|Zune.ActiveCfg = Debug|x86
+		{D985858F-21F2-4B13-BE58-B085859C9687}.Release|x86.ActiveCfg = Release|x86
+		{D985858F-21F2-4B13-BE58-B085859C9687}.Release|Xbox 360.ActiveCfg = Release|x86
+		{D985858F-21F2-4B13-BE58-B085859C9687}.Release|Zune.ActiveCfg = Release|x86
+		{EBF8200B-5011-4C16-9E03-9476886FCED4}.Debug|x86.ActiveCfg = Debug|x86
+		{EBF8200B-5011-4C16-9E03-9476886FCED4}.Debug|x86.Build.0 = Debug|x86
+		{EBF8200B-5011-4C16-9E03-9476886FCED4}.Debug|Xbox 360.ActiveCfg = Debug|x86
+		{EBF8200B-5011-4C16-9E03-9476886FCED4}.Debug|Zune.ActiveCfg = Debug|x86
+		{EBF8200B-5011-4C16-9E03-9476886FCED4}.Release|x86.ActiveCfg = Release|x86
+		{EBF8200B-5011-4C16-9E03-9476886FCED4}.Release|x86.Build.0 = Release|x86
+		{EBF8200B-5011-4C16-9E03-9476886FCED4}.Release|Xbox 360.ActiveCfg = Release|x86
+		{EBF8200B-5011-4C16-9E03-9476886FCED4}.Release|Zune.ActiveCfg = Release|x86
+		{AC11ACB2-52BE-4CEA-AD06-65C34E708090}.Debug|x86.ActiveCfg = Debug|x86
+		{AC11ACB2-52BE-4CEA-AD06-65C34E708090}.Debug|Xbox 360.ActiveCfg = Debug|x86
+		{AC11ACB2-52BE-4CEA-AD06-65C34E708090}.Debug|Zune.ActiveCfg = Debug|x86
+		{AC11ACB2-52BE-4CEA-AD06-65C34E708090}.Release|x86.ActiveCfg = Release|x86
+		{AC11ACB2-52BE-4CEA-AD06-65C34E708090}.Release|Xbox 360.ActiveCfg = Release|x86
+		{AC11ACB2-52BE-4CEA-AD06-65C34E708090}.Release|Zune.ActiveCfg = Release|x86
+		{1F8F0637-C93E-4598-A909-0B57F2AE9B12}.Debug|x86.ActiveCfg = Debug|x86
+		{1F8F0637-C93E-4598-A909-0B57F2AE9B12}.Debug|x86.Build.0 = Debug|x86
+		{1F8F0637-C93E-4598-A909-0B57F2AE9B12}.Debug|Xbox 360.ActiveCfg = Debug|Xbox 360
+		{1F8F0637-C93E-4598-A909-0B57F2AE9B12}.Debug|Xbox 360.Build.0 = Debug|Xbox 360
+		{1F8F0637-C93E-4598-A909-0B57F2AE9B12}.Debug|Zune.ActiveCfg = Debug|Zune
+		{1F8F0637-C93E-4598-A909-0B57F2AE9B12}.Debug|Zune.Build.0 = Debug|Zune
+		{1F8F0637-C93E-4598-A909-0B57F2AE9B12}.Release|x86.ActiveCfg = Release|x86
+		{1F8F0637-C93E-4598-A909-0B57F2AE9B12}.Release|x86.Build.0 = Release|x86
+		{1F8F0637-C93E-4598-A909-0B57F2AE9B12}.Release|Xbox 360.ActiveCfg = Release|Xbox 360
+		{1F8F0637-C93E-4598-A909-0B57F2AE9B12}.Release|Xbox 360.Build.0 = Release|Xbox 360
+		{1F8F0637-C93E-4598-A909-0B57F2AE9B12}.Release|Zune.ActiveCfg = Release|Zune
+		{1F8F0637-C93E-4598-A909-0B57F2AE9B12}.Release|Zune.Build.0 = Release|Zune
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
