@@ -259,7 +259,7 @@ namespace Nibiru
 		{
 			if (particles.ContainsKey(resource))
 			{
-				if (skies[resource] != null)
+				if (particles[resource] != null)
 				{
 					obj = particles[resource];
 					return;

@@ -86,7 +86,7 @@ namespace Nibiru.Particles
 
 		public bool Persist { get; set; }
 
-		public string Resource { get { return resource; } }
+		//public string Resource { get { return resource; } }
 
 		public bool Loaded { get; set; }
 

@@ -51,7 +51,7 @@ namespace Nibiru.Models
 		/// <summary>
 		/// Always returns null. The primitives do not use resources.
 		/// </summary>
-		public string Resource { get { return resource; } }
+		//public string Resource { get { return resource; } }
 
 		public bool Loaded { get; internal set; }
 
@@ -97,14 +97,19 @@ namespace Nibiru.Models
 
 		public virtual void Load(ContentCache cache)
 		{
-			cache.Load(Resource, out texture);
+			cache.Load(resource, out texture);
+
+			foreach (VideoEffect effect in effects)
+			{
+				effect.Load(cache);
+			}
 
 			Loaded = true;
 		}
 
 		public virtual void Unload(ContentCache cache)
 		{
-			cache.Unload(Resource, out texture);
+			cache.Unload(resource, out texture);
 
 			Loaded = false;
 		}
@@ -113,7 +118,7 @@ namespace Nibiru.Models
 		{
 			if (effect != null)
 			{
-				effect.Load(Manager.Game.Content.Load<Effect>(effect.Resource));
+				
 
 				effects.Add(effect);
 			}

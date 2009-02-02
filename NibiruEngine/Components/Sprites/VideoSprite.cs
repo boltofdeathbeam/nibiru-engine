@@ -82,7 +82,7 @@ namespace Nibiru.Sprites
 		/// <summary>
 		/// The resources that will be used to load the sprite from the content pipeline.
 		/// </summary>
-		public string Resource { get { return resource; } }
+		//public string Resource { get { return resource; } }
 
 		/// <summary>
 		/// The current position of the sprite on screen.
@@ -231,7 +231,7 @@ namespace Nibiru.Sprites
 		{
 			Log.Write(this, "Loading texture resource for video sprite.");
 
-			cache.Load(Resource, out texture);
+			cache.Load(resource, out texture);
 
 			pixelData = new Color[texture.Width * texture.Height];
 			texture.GetData<Color>(pixelData);
@@ -243,7 +243,7 @@ namespace Nibiru.Sprites
 		{
 			Log.Write(this, "Unloading texture resource for video sprite.");
 
-			cache.Unload(Resource, out texture);
+			cache.Unload(resource, out texture);
 
 			pixelData = null;
 

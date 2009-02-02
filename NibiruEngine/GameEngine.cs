@@ -100,7 +100,7 @@ namespace Nibiru
 		/// <summary>
 		/// Constructor used to create a new game engine object.
 		/// </summary>
-		public GameEngine() : base()
+		public GameEngine(int width, int height, bool fullScreen) : base()
 		{
 			// Normally we will setup the engine to log only warnings and errors
 			Log.Level = LogLevels.Warning;
@@ -118,6 +118,11 @@ namespace Nibiru
 			graphics.MinimumPixelShaderProfile = ShaderProfile.PS_2_0;
 			graphics.MinimumVertexShaderProfile = ShaderProfile.VS_2_0;
 
+			// Setup the screen resolution and set to fullscreen.
+			graphics.PreferredBackBufferWidth = width;
+			graphics.PreferredBackBufferHeight = height;
+			graphics.IsFullScreen = fullScreen;
+
 			// Create the content cache used to load any resource.
 			cache = new ContentCache(this);
 
@@ -129,8 +134,7 @@ namespace Nibiru
 			sprites = new SpriteManager(this);
 			particles = new ParticleManager(this);
 
-			// Add all of the manager components to the engine's loop.
-			
+			// Add the base components that the engine requires to run.
 			Components.Add(players);
 			Components.Add(sounds);
 			Components.Add(Scenes);

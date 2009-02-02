@@ -28,26 +28,26 @@ namespace Nibiru.Interfaces
 {
 	public interface IEngineCamera : ILoadable, ICollidable
 	{
-		Quaternion Orientation { get; set; }
+		//Quaternion Orientation { get; set; }
 		Vector3 Position { get; set; }
 		Matrix Projection { get; }
 		Vector3 Direction { get; }
 		Matrix View { get; }
-		Matrix ViewProjection { get; }
-		Vector3 X { get; }
-		Vector3 Y { get; }
-		Vector3 Z { get; }
+		//Matrix ViewProjection { get; }
+		//Vector3 X { get; }
+		//Vector3 Y { get; }
+		//Vector3 Z { get; }
 
-		void LookAt(Vector3 target);
-		void LookAt(Vector3 eye, Vector3 target, Vector3 up);
+		//void LookAt(Vector3 target);
+		//void LookAt(Vector3 eye, Vector3 target, Vector3 up);
 
-		void Move(float dx, float dy, float dz);
-		void Move(Vector3 direction, Vector3 distance);
+		//void Move(float dx, float dy, float dz);
+		//void Move(Vector3 direction, Vector3 distance);
 
-		void Perspective(float fovx, float aspect, float znear, float zfar);
-		void Rotate(float headingDegrees, float pitchDegrees, float rollDegrees);
+		//void Perspective(float fovx, float aspect, float znear, float zfar);
+		//void Rotate(float headingDegrees, float pitchDegrees, float rollDegrees);
 
-		void Zoom(float zoom, float minZoom, float maxZoom);
+		//void Zoom(float zoom, float minZoom, float maxZoom);
 
 		void Update(GameTime gameTime);
 	}

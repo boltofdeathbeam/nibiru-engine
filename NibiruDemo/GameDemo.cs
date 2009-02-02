@@ -40,7 +40,7 @@ namespace NibiruDemo
 		ModelScene modelScene = null;
 		ParticleScene particleScene = null;
 
-		public GameDemo()
+		public GameDemo() : base (1280, 800, false)
 		{
 			// We will output all message types.
 			LogLevel = LogLevels.Debug;

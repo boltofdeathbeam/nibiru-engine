@@ -63,36 +63,34 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Images\sky.bmp">
-      <Name>sky</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>SkyProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\NibiruPipeline\NibiruPipeline.csproj">
       <Project>{1F8F0637-C93E-4598-A909-0B57F2AE9B12}</Project>
       <Name>NibiruPipeline</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Effects\sky.fx">
-      <Name>sky</Name>
-      <Importer>EffectImporter</Importer>
-      <Processor>EffectProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Images\seattle.bmp">
-      <Name>seattle</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>SkyProcessor</Processor>
-    </Compile>
     <Compile Include="Images\terrain.bmp">
       <Name>terrain</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TerrainProcessor</Processor>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Models\ground.png">
+      <Name>ground</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Models\terrain.fbx">
+      <Name>terrain</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Effects\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\v3.0\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

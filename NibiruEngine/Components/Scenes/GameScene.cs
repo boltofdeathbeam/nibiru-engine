@@ -39,8 +39,8 @@ namespace Nibiru.Scenes
 		internal List<IEngineSprite> spriteList = null;
 		internal List<IEngineModel> modelList = null;
 		internal List<IEngineParticle> particleList = null;
-		private GameTerrain terrain = null;
-		private GameSky sky = null;
+		private GameTerrain2 terrain = null;
+		private GameSkyDome sky = null;
 		private GameCamera camera = null;
 		private GameBloom bloom;
 		private BloomOptions bloomOption = BloomOptions.Default;
@@ -91,6 +91,8 @@ namespace Nibiru.Scenes
 		/// </summary>
 		public IEngineManager Manager { get { return manager; } set { manager = (SceneManager)value; } }
 
+		public GameEngine Game { get { return game; } }
+
 		/// <summary>
 		/// Gives the ability to mark an object to be destroyed on the next update call.
 		/// </summary>
@@ -129,12 +131,12 @@ namespace Nibiru.Scenes
 		/// <summary>
 		/// The generated geometry model used to render terrain into the scene.
 		/// </summary>
-		public GameTerrain Terrain { get { return terrain; } set { terrain = value; } }
+		public GameTerrain2 Terrain { get { return terrain; } set { terrain = value; } }
 
 		/// <summary>
 		/// The image used to render a game sky into the scene.
 		/// </summary>
-		public GameSky Sky { get { return sky; } set { sky = value; } }
+		public GameSkyDome Sky { get { return sky; } set { sky = value; } }
 
 		/// <summary>
 		/// Provides bloom post-processing capabilities to the engine.
@@ -150,7 +152,7 @@ namespace Nibiru.Scenes
 
 		public bool Loaded { get; internal set; }
 
-		public string Resource { get { return String.Empty; } }
+		//public string Resource { get { return String.Empty; } }
 
 		/// <summary>
 		/// Constructor to create a new game scene, requires the game engine.
@@ -236,18 +238,16 @@ namespace Nibiru.Scenes
 			{
 				Terrain.Load(cache);
 				game.Components.Add(Terrain);
-				Terrain.UpdateOrder = 2;
 			}
 
 			game.Components.Add(game.Models);
-			
-			game.Components.Add(game.Sprites);
 			game.Components.Add(game.Particles);
+			game.Components.Add(game.Sprites);
+
 			if (Bloom != null)
 			{
 				Bloom.Load(cache);
 				game.Components.Add(Bloom);
-				Bloom.UpdateOrder = 1;
 			}
 			
 			Loaded = true;
@@ -263,13 +263,19 @@ namespace Nibiru.Scenes
 			foreach (IEngineSprite entity in spriteList)
 			{
 				entity.Unload(cache);
-				game.Sprites.Remove(entity);
+				game.Sprites.Detatch(entity);
 			}
 
 			foreach (IEngineModel entity in modelList)
 			{
 				entity.Unload(cache);
-				game.Models.Remove(entity);
+				game.Models.Detatch(entity);
+			}
+
+			foreach (IEngineParticle entity in particleList)
+			{
+				entity.Unload(cache);
+				game.Particles.Detatch(entity);
 			}
 
 			game.Components.Remove(game.Models);
@@ -280,21 +286,18 @@ namespace Nibiru.Scenes
 			{
 				Terrain.Unload(cache);
 				game.Components.Remove(Terrain);
-				Terrain = null;
 			}
 
 			if (Sky != null)
 			{
 				Sky.Unload(cache);
 				game.Components.Remove(Sky);
-				Sky = null;
 			}
 			
 			if (Bloom != null)
 			{
 				Bloom.Unload(cache);
 				game.Components.Remove(Bloom);
-				Bloom = null;
 			}
 
 			Loaded = false;

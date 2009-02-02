@@ -72,6 +72,7 @@ namespace Nibiru
 			if (!modelList.Contains(model))
 			{
 				model.Manager = this;
+				model.Destroy = false;
 				modelList.Add(model);
 			}
 			else
@@ -82,7 +83,7 @@ namespace Nibiru
 		/// Marks a sprite to be removed on next update. This breaks the link between manager and sprite, it will no longer be drawn or updated.
 		/// </summary>
 		/// <param name="sprite"></param>
-		public void Remove(IEngineModel model)
+		public void Detatch(IEngineModel model)
 		{
 			model.Destroy = true;
 		}
@@ -108,16 +109,6 @@ namespace Nibiru
 			{
 				modelList.Remove(model);
 				model.Manager = null;
-
-				if (model is VideoModel)
-				{
-					// Clear the mesh
-				}
-				else if (model is VideoPrimitive)
-				{
-					if (model.Resource != null)
-						(model as VideoPrimitive).Texture = null;
-				}
 			}
 
 			base.Update(gameTime);

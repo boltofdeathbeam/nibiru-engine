@@ -30,6 +30,7 @@ namespace NibiruDemo
 			skull = new ControlledSprite(PlayerIndex.One, @"Images\skullball", new Vector2(550, 550), Color.White, 75, 75, 0, 6, 8);
 			skull.Speed = new Vector2(2, 2);
 			
+			
 			Attach(title);
 			Attach(rings);
 			Attach(skull);

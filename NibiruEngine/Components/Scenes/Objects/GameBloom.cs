@@ -49,7 +49,7 @@ namespace Nibiru.Scenes
 		// Choose what display settings the bloom should use.
 		public BloomConfig Config { get { return config; } set { config = value; } }
 
-		public string Resource { get { return String.Empty; } }
+		//public string Resource { get { return String.Empty; } }
 
 		public bool Loaded { get; internal set; }
 

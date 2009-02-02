@@ -68,7 +68,17 @@ namespace Nibiru
 			if (!particles.Contains(effect))
 			{
 				effect.Manager = this;
+				effect.Destroy = false;
 				particles.Add(effect);
+			}
+		}
+
+		public void Detatch(IEngineParticle effect)
+		{
+			if (particles.Contains(effect))
+			{
+				particles.Remove(effect);
+				effect.Manager = null;
 			}
 		}
 

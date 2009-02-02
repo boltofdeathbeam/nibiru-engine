@@ -97,7 +97,7 @@ namespace Nibiru
 		/// Marks a sprite to be removed on next update. This breaks the link between manager and sprite, it will no longer be drawn or updated.
 		/// </summary>
 		/// <param name="sprite"></param>
-		public void Remove(IEngineSprite sprite)
+		public void Detatch(IEngineSprite sprite)
 		{
 			sprite.Destroy = true;
 		}

@@ -44,7 +44,7 @@ namespace Nibiru.Sprites
 		/// <summary>
 		/// The resource path that will be used to load the texture from the content pipeline.
 		/// </summary>
-		public string Resource { get { return resource; } }
+		//public string Resource { get { return resource; } }
 
 		public bool Loaded { get; internal set; }
 
@@ -126,14 +126,14 @@ namespace Nibiru.Sprites
 
 		public void Load(ContentCache cache)
 		{
-			cache.Load(Resource, out font);
+			cache.Load(resource, out font);
 
 			Loaded = true;
 		}
 
 		public void Unload(ContentCache cache)
 		{
-			cache.Unload(Resource, out font);
+			cache.Unload(resource, out font);
 
 			Loaded = false;
 		}

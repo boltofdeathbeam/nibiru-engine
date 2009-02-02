@@ -61,14 +61,14 @@ namespace Nibiru.Models
 		{
 			Log.Write(this, "Loading model resource for video model.");
 
-			cache.Load(Resource, out model);
+			cache.Load(resource, out model);
 		}
 
 		public override void Unload(ContentCache cache)
 		{
 			Log.Write(this, "Unloading model resource for video model.");
 
-			cache.Unload(Resource, out model);
+			cache.Unload(resource, out model);
 		}
 
 		public override bool CollidesWith(ICollidable collider)

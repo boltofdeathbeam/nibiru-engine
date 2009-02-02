@@ -29,10 +29,9 @@ using Nibiru.Interfaces;
 
 namespace Nibiru.Models
 {
-	public abstract class VideoEffect
+	public abstract class VideoEffect : ILoadable
 	{
 		private string resource;
-		public string Resource { get { return resource; } }
 
 		private Effect effect;
 
@@ -44,15 +43,28 @@ namespace Nibiru.Models
 			get { return effect.Parameters; }
 		}
 
+		public bool Loaded { get; set; }
+
 		public VideoEffect(string resource)
 		{
 			this.resource = resource;
 			this.techniques = new List<VideoTechnique>();
+
+			Loaded = false;
 		}
 
-		public void Load(Effect effect)
+		public void Load(ContentCache cache)
 		{
-			this.effect = effect;
+			cache.Load(resource, out effect);
+
+			Loaded = true;
+		}
+
+		public void Unload(ContentCache cache)
+		{
+			cache.Unload(resource, out effect);
+
+			Loaded = false;
 		}
 
 		public void Add(VideoTechnique technique)

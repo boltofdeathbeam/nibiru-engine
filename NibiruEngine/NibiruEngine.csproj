@@ -87,6 +87,8 @@
     <Compile Include="Components\Content\ParticleContent.cs" />
     <Compile Include="Components\Content\SkyContent.cs" />
     <Compile Include="Components\Content\TerrainContent.cs" />
+    <Compile Include="Components\Scenes\Objects\GameSkyDome.cs" />
+    <Compile Include="Components\Scenes\Objects\GameTerrain2.cs" />
     <Compile Include="ContentCache.cs" />
     <Compile Include="Interfaces\ICacheable.cs" />
     <Compile Include="Interfaces\IEngineParticle.cs" />

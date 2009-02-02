@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 using Nibiru;
 using Nibiru.Scenes;
@@ -24,18 +25,36 @@ namespace NibiruDemo
 			title = new VideoFont("Nibiru Engine - Model Demo Scene", @"Fonts\trebuchet", new Vector2(10, 10), Color.White);
 
 			// Setup a camera to view this scene.
-			Camera = new GameCamera(game);
-			Camera.CurrentType = VideoCamera.Types.Third;
-			Camera.Near = 1;
-			Camera.Far = 10000;
+			Camera = new GameCamera(game, PlayerIndex.One, new Vector3(0, 0, 50), Vector3.Zero, Vector3.Up, 1, 10000, 250.0f);
+			Camera.AllowMove = true;
+			Camera.AllowPitch = true;
+			Camera.AllowYaw = false;
+			Camera.AllowRoll = false;
+			Camera.UseKeyboard = true;
 
-			Sky = new GameSky(game, Camera, @"Images\sky", @"Effects\sky");
-			Terrain = new GameTerrain(game, Camera, @"Images\terrain");
+			// Setup the sky dome that will render a sky/sun around the world.
+			Sky = new GameSkyDome(game, Camera);
+			
+			// Setup a game terrain that will be loaded from the heightmap image.
+			Terrain = new GameTerrain2(game, Camera, Sky, @"Models\terrain", @"Models\ground");
 
+			// Create the spaceship avatar that the camera will center around.
 			spaceship = new VideoModel(Camera, @"Models\spaceship");
 
 			Attach(title);
 			Attach(spaceship);
+		}
+
+		public override void Update(GameTime gameTime)
+		{
+			if (Players.Current.IsKeyDown(Keys.Escape))
+				Game.Exit();
+
+			// Move the sky's positional value in a continuous circle around the "planet".
+			Sky.RealTime = false;
+			Sky.Position -= 0.005f;
+
+			base.Update(gameTime);
 		}
 	}
 }

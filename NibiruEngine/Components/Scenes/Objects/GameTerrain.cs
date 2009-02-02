@@ -47,7 +47,7 @@ namespace Nibiru.Scenes
 		/// <summary>
 		/// The resource path that will be used to load the model from the content pipeline.
 		/// </summary>
-		public string Resource { get { return resource; } }
+		//public string Resource { get { return resource; } }
 
 		public bool Loaded { get; internal set; }
 
