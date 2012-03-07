@@ -308,8 +308,7 @@ namespace Nibiru.Scenes
 			Manager.Game.GraphicsDevice.Clear(Color.Black);
 
 			// Make sure we are using the depth buffer, otherwise things draw weird.
-			Manager.Game.GraphicsDevice.RenderState.DepthBufferEnable = true;
-			Manager.Game.GraphicsDevice.RenderState.DepthBufferWriteEnable = true;
+			Manager.Game.GraphicsDevice.DepthStencilState = DepthStencilState.Default;
 		}
 
 		public virtual void Update(GameTime gameTime)

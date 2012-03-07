@@ -40,7 +40,7 @@ namespace Nibiru.Scenes
 		private Effect bloomCombineEffect;
 		private Effect gaussianBlurEffect;
 
-		private ResolveTexture2D resolveTarget;
+		private RenderTarget2D resolveTarget;
 		private RenderTarget2D renderTarget1;
 		private RenderTarget2D renderTarget2;
 
@@ -81,7 +81,7 @@ namespace Nibiru.Scenes
 			SurfaceFormat format = pp.BackBufferFormat;
 
 			// Create a texture for reading back the backbuffer contents.
-			resolveTarget = new ResolveTexture2D(Game.GraphicsDevice, width, height, 1, format);
+			resolveTarget = new RenderTarget2D(Game.GraphicsDevice, width, height, true, format, DepthFormat.Depth24);
 
 			// Create two rendertargets for the bloom processing. These are half the
 			// size of the backbuffer, in order to minimize fillrate costs. Reducing
@@ -90,8 +90,8 @@ namespace Nibiru.Scenes
 			width /= 2;
 			height /= 2;
 
-			renderTarget1 = new RenderTarget2D(Game.GraphicsDevice, width, height, 1, format);
-			renderTarget2 = new RenderTarget2D(Game.GraphicsDevice, width, height, 1, format);
+			renderTarget1 = new RenderTarget2D(Game.GraphicsDevice, width, height, true, format, DepthFormat.Depth24);
+			renderTarget2 = new RenderTarget2D(Game.GraphicsDevice, width, height, true, format, DepthFormat.Depth24);
 
 			Loaded = true;
 		}
@@ -115,7 +115,7 @@ namespace Nibiru.Scenes
 		{
 			// Resolve the scene into a texture, so we can
 			// use it as input data for the bloom processing.
-			Game.GraphicsDevice.ResolveBackBuffer(resolveTarget);
+			Game.GraphicsDevice.SetRenderTarget(resolveTarget);
 
 			// Pass 1: draw the scene into rendertarget 1, using a
 			// shader that extracts only the brightest parts of the image.
@@ -127,18 +127,18 @@ namespace Nibiru.Scenes
 			// using a shader to apply a horizontal gaussian blur filter.
 			SetBlurEffectParameters(1.0f / (float)renderTarget1.Width, 0);
 
-			DrawFullscreenQuad(renderTarget1.GetTexture(), renderTarget2, gaussianBlurEffect);
+			DrawFullscreenQuad(renderTarget1, renderTarget2, gaussianBlurEffect);
 
 			// Pass 3: draw from rendertarget 2 back into rendertarget 1,
 			// using a shader to apply a vertical gaussian blur filter.
 			SetBlurEffectParameters(0, 1.0f / (float)renderTarget1.Height);
 
-			DrawFullscreenQuad(renderTarget2.GetTexture(), renderTarget1, gaussianBlurEffect);
+			DrawFullscreenQuad(renderTarget2, renderTarget1, gaussianBlurEffect);
 
 			// Pass 4: draw both rendertarget 1 and the original scene
 			// image back into the main backbuffer, using a shader that
 			// combines them to produce the final bloomed result.
-			Game.GraphicsDevice.SetRenderTarget(0, null);
+			Game.GraphicsDevice.SetRenderTarget(null);
 
 			EffectParameterCollection parameters = bloomCombineEffect.Parameters;
 
@@ -151,7 +151,7 @@ namespace Nibiru.Scenes
 
 			Viewport viewport = Game.GraphicsDevice.Viewport;
 
-			DrawFullscreenQuad(renderTarget1.GetTexture(), viewport.Width, viewport.Height, bloomCombineEffect);
+			DrawFullscreenQuad(renderTarget1, viewport.Width, viewport.Height, bloomCombineEffect);
 		}
 
 		/// <summary>
@@ -160,11 +160,11 @@ namespace Nibiru.Scenes
 		/// </summary>
 		void DrawFullscreenQuad(Texture2D texture, RenderTarget2D renderTarget, Effect effect)
 		{
-			Game.GraphicsDevice.SetRenderTarget(0, renderTarget);
+			Game.GraphicsDevice.SetRenderTarget(renderTarget);
 
 			DrawFullscreenQuad(texture, renderTarget.Width, renderTarget.Height, effect);
 
-			Game.GraphicsDevice.SetRenderTarget(0, null);
+			Game.GraphicsDevice.SetRenderTarget(null);
 		}
 
 		/// <summary>
@@ -173,19 +173,14 @@ namespace Nibiru.Scenes
 		/// </summary>
 		void DrawFullscreenQuad(Texture2D texture, int width, int height, Effect effect)
 		{
-			spriteBatch.Begin(SpriteBlendMode.None, SpriteSortMode.Immediate, SaveStateMode.None);
+			spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend);
 
 			// Begin the custom effect, if it is currently enabled.
-			effect.Begin();
-			effect.CurrentTechnique.Passes[0].Begin();
+			effect.CurrentTechnique.Passes[0].Apply();
 
 			// Draw the quad.
 			spriteBatch.Draw(texture, new Rectangle(0, 0, width, height), Color.White);
 			spriteBatch.End();
-
-			// End the custom effect.
-			effect.CurrentTechnique.Passes[0].End();
-			effect.End();
 		}
 
 		/// <summary>

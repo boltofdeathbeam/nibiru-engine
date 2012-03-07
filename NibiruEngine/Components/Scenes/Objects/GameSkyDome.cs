@@ -166,8 +166,7 @@ namespace Nibiru.Scenes
 			Matrix View = camera.View;
 			Matrix Projection = camera.Projection;
 
-			Game.GraphicsDevice.RenderState.DepthBufferEnable = false;
-			Game.GraphicsDevice.RenderState.DepthBufferWriteEnable = false;
+			GraphicsDevice.DepthStencilState = DepthStencilState.None;
 
 			foreach (ModelMesh mesh in dome.Meshes)
 			{
@@ -206,8 +205,7 @@ namespace Nibiru.Scenes
 				}
 			}
 
-			Game.GraphicsDevice.RenderState.DepthBufferWriteEnable = true;
-			Game.GraphicsDevice.RenderState.DepthBufferEnable = true;
+			GraphicsDevice.DepthStencilState = DepthStencilState.Default;
 		}
 
 		private Vector4 GetDirection()
